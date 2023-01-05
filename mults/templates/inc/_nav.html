@@ -1,0 +1,83 @@
+{% load static %}
+
+<div class="container-xl">
+    <header>
+        <!-- Menu -->
+        <div class="row">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand col-md-2 logo-a" href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" class="logo"></a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav top-menu me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link under-line active" aria-current="page" href="{% url 'home' %}">Мультфильмы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link under-line" href="#">Обучающие видео</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link under-line" href="#">Игры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link under-line" href="#">Объявления</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Детские организации
+                                </a>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Сады</a></li>
+                                <li><a class="dropdown-item" href="#">Школы</a></li>
+                                <li><a class="dropdown-item" href="#">Другие организации</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link under-line">Контакты</a>
+                            </li>
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link under-line" href="{% url 'add_movie' %}">Добавить</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <ul class="navbar-nav navbar-right ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                                <ul class="dropdown-menu search">
+                                    <li>
+                                        <form class="d-flex" role="search">
+                                            <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                                            <button class="btn btn-outline-success" type="submit">Поиск</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% if request.user.is_authenticated %}
+                                    <li>{{ user.username }}</li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a></li>
+                                    {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'login' %}" >Войти</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'register' %}" >Зарегистрироваться</a></li>
+                                    {% endif %}
+<!--                                    <li><a class="dropdown-item" href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#modal-login">Войти</a></li>-->
+<!--                                    <li><a class="dropdown-item" href="{% url 'register' %}" data-bs-toggle="modal" data-bs-target="#modal-register">Зарегистрироваться</a></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- end Menu -->
+    </header>
+</div>

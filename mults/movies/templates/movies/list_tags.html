@@ -1,0 +1,10 @@
+<div class="row m-2">
+    <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+        {% for item in tags %}
+        <a href="{{ item.get_absolute_url }}" type="button" class="btn btn-outline-dark">
+            {{ item.title }}
+            <span class="badge text-bg-primary">{{ item.cnt }}</span>
+        </a>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | {{ block.super }}{% endblock %}
+
+{% block slider %}{% endblock %}
+{% block video_block %}{% endblock %}
+{% block title_h1 %}<h1>{{ title }}</h1>{% endblock %}
+{% block sort_movies %}
+<div class="row sort row-cols-auto">
+    <div class="col">
+        <button class="custom-btn active">Рекомендуемые</button>
+    </div>
+    <div class="col">
+        <button class="custom-btn">Популярные</button>
+    </div>
+    <div class="col">
+        <button class="custom-btn">Новые</button>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<!-- Catalog -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+    {% for item in movies %}
+    {% comment %}
+    {% for item in object_list %}
+    {% endcomment %}
+    <div class="col">
+        <div class="movie-card">
+            <a href="{{ item.get_absolute_url }}">
+                <div class="bg-image hover-zoom">
+                    {% if item.photo %}
+                        <img src="{{ item.photo.url }}" width="350">
+                    {% else %}
+                        <img src="https://free4kwallpapers.com/uploads/originals/2015/10/07/beautifull-painting.jpg"
+                        width="350">
+                    {% endif %}
+                </div>
+                <div class="icons">
+                    <div class="age">{{ item.age}}+</div>
+                    {% if item.default_rate >= 6.5 %}
+                    <div class="rating rating-good">
+                        <i class="fa-solid fa-face-smile"></i>{{ item.default_rate }}
+                    </div>
+                    {% elif item.default_rate >= 4 %}
+                    <div class="rating rating-normal">
+                        <i class="fa-solid fa-face-meh"></i>{{ item.default_rate }}
+                    </div>
+                    {% else %}
+                    <div class="rating rating-bad">
+                        <i class="fa-solid fa-face-frown"></i>{{ item.default_rate }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="title">{{ item.title }}</div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- end Catalog -->
+{% endblock %}
+{% block show_more %}
+<div class="row row-cols-auto show-buttons">
+    <div class="col">
+        <button class="custom-btn">Загрузить еще</button>
+    </div>
+    <div class="col">
+        <button class="custom-btn">Показать все</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_links %}
+{% load movies_tags %}
+{% show_tags %}
+{% endblock %}
+
+{% block set_by_age %}
+<h2>Подборки мультфильмов по возрасту</h2>
+<div class="row text-center age-set">
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="age">0+</div>
+                <div class="card-title h5">Для самых маленьких</div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn custom-btn">Смотреть</a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="age">3+</div>
+                <div class="card-title h5">Для детей от 3 лет</div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn custom-btn">Смотреть</a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="age">6+</div>
+                <div class="card-title h5">Для детей от 6 лет</div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn custom-btn">Смотреть</a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="age">9+</div>
+                <div class="card-title h5">Для детей от 9 лет</div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn custom-btn">Смотреть</a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}{{ movie_item.title }} | {{ block.super }}{% endblock %}
+
+{% block slider %}{% endblock %}
+{% block video_block %}
+<!-- Video block -->
+<div class="container-fluid bg p-0 mb-3">
+    <div class="container-xl p-0">
+        <div class="video-block row w-100 m-0">
+            <div class="col-lg-8 video p-0">
+                <iframe width="100%" style="height: 100%;" src="https://www.youtube.com/embed/V6T7SIbCFg0?rel=0&showinfo=0&autoplay=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-lg-4 slide-item d-flex flex-column">
+                <div class="h5">{{ movie_item.title }}</div>
+                <div class="params">
+                    <div class="icons">
+                        <div class="age">{{ movie_item.age }}+</div>
+                        <div class="rating"><i class="fa-solid fa-face-smile"></i>{{ movie_item.default_rate }}</div>
+                        <div class="fav ms-auto"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <p><strong>Страна:</strong> {{ movie_item.country }}</p>
+                    <p><strong>Год:</strong> {{ movie_item.year }}</p>
+                </div>
+                <p class="description">{{ movie_item.content|safe }}</p>
+                <div class="choise-rating">
+                    <i class="fa-solid fa-face-frown"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+                {% if movie_item.serial == True %}
+                <div class="series row row-cols-auto mt-auto">
+                    <div class="col p-0">
+                        <a class="prev-series" href="#"><i class="fa-regular fa-circle-left"></i></a>
+                    </div>
+                    <div class="series_numder col p-0">Серия №1</div>
+                    <div class="col p-0">
+                        <a class="next-series" href="#"><i class="fa-regular fa-circle-right"></i></a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Video block -->
+{% endblock %}
+{% block title_h1 %}{% endblock %}
+
+{% block content %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="desc-tab" data-bs-toggle="tab" href="#desc" role="tab" aria-controls="desc" aria-selected="true">Описание</a>
+    </li>
+    <li class="nav-item" role="presentation">
+    <a class="nav-link" id="trailers-tab" data-bs-toggle="tab" href="#trailers" role="tab" aria-controls="trailers" aria-selected="false">Трейлеры</a>
+    </li>
+    <li class="nav-item" role="presentation">
+    <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Отзывы</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="desc-tab">
+        <div class="row">
+            <div class="col-lg-6">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Год</th>
+                            <td>{{ movie_item.year }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Страна</th>
+                            <td>{{ movie_item.country }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Жанр</th>
+                            <td>{{ movie_item.genre }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Режиссер</th>
+                            <td>{{ movie_item.director }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Время</th>
+                            <td>{{ movie_item.time }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6">
+                <p>{{ movie_item.content|safe }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="trailers" role="tabpanel" aria-labelledby="trailers-tab">...</div>
+    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">...</div>
+</div>
+
+<!-- end Tabs -->
+{% endblock %}
+
+{% block related %}{% endblock %}
+{% block featured %}{% endblock %}
+
+

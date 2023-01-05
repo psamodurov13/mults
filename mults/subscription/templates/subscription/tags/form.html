@@ -1,0 +1,10 @@
+<form action="{% url 'subscription' %}" method="post">
+    {{ subscription_form.non_field.errors }}
+    <div class="input-group mb-3">
+        {% csrf_token %}
+<!--        <input type="email" name="email" class="form-control" required="" id="id_email" placeholder="e-mail" aria-label="e-mail" aria-describedby="button-news">-->
+        {{ subscription_form.email }}
+        {{ subscription_form.email.errors }}
+        <button class="btn green-btn" type="submit" id="button-news" name="subscribe-button">Подписаться</button>
+    </div>
+</form>

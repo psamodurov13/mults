@@ -1,0 +1,7 @@
+<form action="{% url 'subscription' %}" method="post">
+    <div class="input-group mb-3">
+        {% csrf_token %}
+        <input type="email" name="email" class="form-control" required="" id="id_email" placeholder="e-mail" aria-label="e-mail" aria-describedby="button-news">
+        <button class="btn green-btn" type="submit" id="button-news" name="subscribe-button">Подписаться</button>
+    </div>
+</form>

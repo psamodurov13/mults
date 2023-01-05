@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить фильм | {{ block.super }}{% endblock %}
+
+{% block title_h1 %}<h1>Тест</h1>{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'subscription' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block" name="subscribe-button">Подписаться</button>
+</form>
+
+{% endblock %}
+
